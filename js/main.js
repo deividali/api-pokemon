@@ -1,31 +1,27 @@
 function fetchPokemon(){
-const nombrePokemon = document
-.getElementById("pokemon-name")
-.value.toLowerCase();
+const nombrePokemon = document.getElementById("pokemon-name").value.toLowerCase();
 
 if(nombrePokemon===""){
     alert("No has escrito nada")
-    return;
+    return
 
 }
 
-    fetch(`https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`)
+fetch(`https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`)
     //.then(res=>res.json())
-    .then(res=>{
-        if(!res.ok){
-            throw new Error("Pokemon No Encontrado");
-        }
-        return res.json()
-    })
+.then(res=>{
+    console.log(res)
+    if(!res.ok){
+        throw new Error("Pokemon No Encontrado");
+    }
+    return res.json()
+})
 
-    .then((data)=>displayPokemon(data))
+.then((data)=>displayPokemon(data))
 
-    .then((data)=>displayPokemon(data).catch((error)=>console.error("error atrapando el pokemon",error))
-    );
+.then((data)=>displayPokemon(data).catch((error)=>console.error("error atrapando el pokemon",error)));
+
 }
-
-
-
 function displayPokemon(pokemon){
     const pokemonInfo = document.getElementById('pokemon-info')
     pokemonInfo.innerHTML=`
